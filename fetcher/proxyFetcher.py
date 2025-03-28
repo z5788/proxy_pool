@@ -27,7 +27,7 @@ class ProxyFetcher(object):
 
 
     @staticmethod
-    def freeProxy05(page_count=1):
+    def freeProxy01(page_count=1):
         """ 快代理 https://www.kuaidaili.com """
         url_pattern = [
             'https://www.kuaidaili.com/free/inha/{}/',
@@ -48,7 +48,7 @@ class ProxyFetcher(object):
 
 
     @staticmethod
-    def freeProxy07():
+    def freeProxy02():
         """ 云代理 """
         urls = ['http://www.ip3366.net/free/?stype=1', "http://www.ip3366.net/free/?stype=2"]
         for url in urls:
@@ -59,7 +59,7 @@ class ProxyFetcher(object):
 
 
     @staticmethod
-    def freeProxy10():
+    def freeProxy3():
         """ 89免费代理 """
         r = WebRequest().get("https://www.89ip.cn/index_1.html", timeout=10)
         proxies = re.findall(
@@ -69,7 +69,7 @@ class ProxyFetcher(object):
             yield ':'.join(proxy)
 
     @staticmethod
-    def freeProxy11():
+    def freeProxy4():
         """ 稻壳代理 https://www.docip.net/ """
        
         r = WebRequest().get("https://www.docip.net/data/free.json", timeout=10)
@@ -79,7 +79,7 @@ class ProxyFetcher(object):
         except Exception as e:
             print(e)
     @staticmethod
-    def freeProxy12():
+    def freeProxy5():
         """ 永久免费 https://proxy.scdn.io/ """
         urls = ['https://proxy.scdn.io/?page=1&per_page=100', "https://proxy.scdn.io/?page=2&per_page=100", "https://proxy.scdn.io/?page=3&per_page=100"]
         seen_proxies = set()  # 用于去重
