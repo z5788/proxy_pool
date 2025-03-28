@@ -37,13 +37,15 @@ class ProxyFetcher(object):
         for page_index in range(1, page_count + 1):
             for pattern in url_pattern:
                 url_list.append(pattern.format(page_index))
-
+               
         for url in url_list:
             tree = WebRequest().get(url).tree
-            proxy_list = tree.xpath('.//table//tr')
-            sleep(1)  # 必须sleep 不然第二条请求不到数据
-            for tr in proxy_list[1:]:
-                yield ':'.join(tr.xpath('./td/text()')[0:2])
+            match = re.search(r'(?:const|let|var)\s+fpsList\s*=\s*($.*?$);', tree, re.DOTALL)
+        try:
+        proxies = json.loads(match.group(1))
+        for item in proxies:
+            yield f"{item['ip']}:{item['port']}"
+
 
     @staticmethod
     def freeProxy07():
